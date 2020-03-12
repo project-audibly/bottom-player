@@ -1,0 +1,28 @@
+{
+  "name": "bottom-player",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "faker": "^4.1.0",
+    "lodash": "^4.17.15",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgalfano/bottom-player.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgalfano/bottom-player/issues"
+  },
+  "homepage": "https://github.com/mgalfano/bottom-player#readme"
+}
