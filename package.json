@@ -6,11 +6,13 @@
   "dependencies": {
     "faker": "^4.1.0",
     "lodash": "^4.17.15",
+    "mysql": "^2.18.1",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {},
   "scripts": {
+    "seed": "node ./db/dataSeed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
