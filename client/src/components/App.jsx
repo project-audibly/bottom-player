@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import ControlPlay from './ControlPlay.jsx';
 // import $ from "jquery";
 
 class App extends React.Component {
@@ -9,6 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        {/* <ControlPlay /> */}
         <h1>Hello, world!</h1>
       </div>
     );
