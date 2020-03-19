@@ -10,5 +10,8 @@ module.exports = {
   testEnvironmentOptions: { enzymeAdapter: "react16" },
   transform: {
     "^.+\\.jsx$": "babel-jest"
-  }
+  },
+  testPathIgnorePatterns : [
+    "spec/react.test.jsx" 
+  ]
 };
