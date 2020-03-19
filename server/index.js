@@ -11,13 +11,14 @@ var connection = mysql.createConnection({
   password: '',
   database: 'audiblyBottomPlayer'
 });
+connection.connect();
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.get('/songs', (req, res) => {
-  connection.connect();
+
   connection.query('SELECT * FROM songs', function(err, data) {
     if (err) {
       console.error('error getting data from db: ', err);
@@ -26,5 +27,5 @@ app.get('/songs', (req, res) => {
     }
   });
 
-  connection.end();
+  // connection.end();
 });
