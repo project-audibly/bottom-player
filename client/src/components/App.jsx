@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       songs: [],
-      currentSong: [],
+      currentSong: null,
     };
 
     this.getSongs = this.getSongs.bind(this);

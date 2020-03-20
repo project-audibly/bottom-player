@@ -24,13 +24,19 @@ class ControlPlay extends React.Component {
   }
 
   render() {
+    if (this.props.song) {
+      var audioUrl = this.props.song.song_audio;
+    } else {
+      var audioUrl = null;
+    }
+
     return (
       <div>
-        <button id="playbtn" onClick={this.handleClick}>CLICK ME TO PLAY!</button>
+        <button type="button" id="playbtn" onClick={this.handleClick}>CLICK ME TO PLAY!</button>
         <audio
           autoPlay={false}
           ref="song"
-          src={this.props.song.song_audio}>
+          src={audioUrl}>
           Your browser does not support the <code>audio</code> element.
         </audio>
       </div>
