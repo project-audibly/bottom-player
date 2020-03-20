@@ -4,17 +4,43 @@
   "description": "",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "faker": "^4.1.0",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "mysql": "^2.18.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-airbnb": "^4.4.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "jest": "^25.1.0",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
+    "nodemon": "^2.0.2",
+    "sinon": "^9.0.1",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
   },
-  "devDependencies": {},
   "scripts": {
+    "start": "nodemon server",
     "seed": "node ./db/dataSeed.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "test": "jest",
+    "build": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -26,5 +52,6 @@
   "bugs": {
     "url": "https://github.com/mgalfano/bottom-player/issues"
   },
-  "homepage": "https://github.com/mgalfano/bottom-player#readme"
+  "homepage": "https://github.com/mgalfano/bottom-player#readme",
+  "main": "webpack.config.js"
 }
