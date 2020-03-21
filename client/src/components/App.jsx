@@ -3,6 +3,7 @@ import $ from 'jquery';
 import ControlPlay from './ControlPlay.jsx';
 import SongInfo from './SongInfo.jsx';
 import ControlNext from './ControlNext.jsx';
+import ControlPrevious from './ControlPrevious.jsx';
 import Avatar from './Avatar.jsx';
 
 class App extends React.Component {
@@ -36,18 +37,21 @@ class App extends React.Component {
   nextSong() {
     this.setState({
       currentSongIndex: this.state.currentSongIndex + 1,
+      currentSong: this.state.songs[this.state.currentSongIndex],
     });
   }
 
   prevSong() {
     this.setState({
       currentSongIndex: this.state.currentSongIndex - 1,
+      currentSong: this.state.songs[this.state.currentSongIndex],
     });
   }
 
   render() {
     return (
       <div>
+        <ControlPrevious index={this.state.currentSongIndex} prevSong={this.prevSong} />
         <ControlPlay song={this.state.currentSong} />
         <ControlNext index={this.state.currentSongIndex} nextSong={this.nextSong} />
         <Avatar song={this.state.currentSong} />

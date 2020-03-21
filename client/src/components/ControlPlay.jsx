@@ -4,7 +4,7 @@ class ControlPlay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPlaying: false,
+      isPlaying: true,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -32,9 +32,9 @@ class ControlPlay extends React.Component {
 
     return (
       <div>
-        <button type="button" id="playbtn" onClick={this.handleClick}>CLICK ME TO PLAY!</button>
+        <button type="button" id="playbtn" onClick={this.handleClick}>CLICK ME TO PAUSE!</button>
         <audio
-          autoPlay={false}
+          autoPlay={this.state.isPlaying}
           ref="song"
           src={audioUrl}>
           Your browser does not support the <code>audio</code> element.
