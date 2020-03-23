@@ -1,21 +1,28 @@
 import React from 'react';
 import $ from 'jquery';
+import CSSModules from 'react-css-modules';
 import ControlPlay from './ControlPlay.jsx';
 import SongInfo from './SongInfo.jsx';
 import ControlNext from './ControlNext.jsx';
 import ControlPrevious from './ControlPrevious.jsx';
+import Timeline from './Timeline.jsx';
 import Avatar from './Avatar.jsx';
+import styles from './App.css';
+import AudioManager from './AudioManager.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       songs: [],
-      currentSong: null,
-      currentSongIndex: 0,
+      currentIndex: 0,
+      currentTime: null,
+      isPlaying: false,
+      duration: null
     };
-
     this.getSongs = this.getSongs.bind(this);
+    this.setIsPlaying = this.setIsPlaying.bind(this);
     this.nextSong = this.nextSong.bind(this);
     this.prevSong = this.prevSong.bind(this);
   }
@@ -27,33 +34,56 @@ class App extends React.Component {
   getSongs() {
     $.get('/songs')
       .done((data) => {
-        this.setState({ songs: data, currentSong: data[0] });
+        this.setState({ songs: data });
       })
       .fail(() => {
         console.error('error getting songs');
       });
   }
 
+  setIsPlaying(isPlaying) {
+    this.setState({
+      isPlaying: isPlaying
+    });
+  }
+
   nextSong() {
     this.setState({
-      currentSongIndex: this.state.currentSongIndex + 1,
-      currentSong: this.state.songs[this.state.currentSongIndex],
+      currentIndex: this.state.currentIndex + 1,
+      currentSong: this.state.songs[this.state.currentIndex + 1],
     });
   }
 
   prevSong() {
     this.setState({
-      currentSongIndex: this.state.currentSongIndex - 1,
-      currentSong: this.state.songs[this.state.currentSongIndex],
+      currentIndex: this.state.currentIndex - 1,
+      currentSong: this.state.songs[this.state.currentIndex - 1],
     });
   }
 
   render() {
     return (
-      <div>
-        <ControlPrevious index={this.state.currentSongIndex} prevSong={this.prevSong} />
-        <ControlPlay song={this.state.currentSong} />
-        <ControlNext index={this.state.currentSongIndex} nextSong={this.nextSong} />
+      <div className="app">
+        <AudioManager
+          isPlaying={this.state.isPlaying}
+          song={this.state.songs[this.state.currentIndex]} 
+          onTimeUpdate={(currentTime) => {this.setState({currentTime})}}
+        />
+        <ControlPrevious 
+          disabled={this.state.currentIndex === 0}
+          index={this.state.currentIndex}
+          setPrevSong={this.prevSong}
+        />
+        <ControlPlay 
+          isPlaying={this.state.isPlaying} 
+          setIsPlaying={this.setIsPlaying} 
+        />
+        <ControlNext 
+          disabled={this.state.currentIndex === this.state.songs.length - 1}
+          index={this.state.currentIndex} 
+          setNextSong={this.nextSong}
+        />
+        <Timeline song={this.state.currentSong} />
         <Avatar song={this.state.currentSong} />
         <SongInfo song={this.state.currentSong} />
       </div>
@@ -61,7 +91,7 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default CSSModules(App, styles);
 
 // vvvv top of testing vvv
 // App.prototype.getSongs = something;
