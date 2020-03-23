@@ -1,4 +1,5 @@
 const path = require('path');
+
 const SRC_DIR = path.join(__dirname, 'client', 'src');
 const PUBLIC_DIR = path.join(__dirname, 'client', 'public');
 
@@ -18,9 +19,15 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
-    ]
-  }
+          },
+        },
+      },
+      {
+        test: /\.css$/i,
+        loaders: [
+          'style-loader', 'css-loader?sourceMap',
+        ],
+      },
+    ],
+  },
 };

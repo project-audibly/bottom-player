@@ -1,49 +1,34 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
+import styles from './ControlPlay.css';
 
 class ControlPlay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isPlaying: false,
-    };
-
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    const audioElement = this.refs.song;
-    if (this.state.isPlaying === false) {
-      this.setState({ isPlaying: true });
-      document.getElementById('playbtn').innerHTML = 'CLICK ME TO PAUSE!';
-      audioElement.play();
-    } else {
-      this.setState({ isPlaying: false });
-      document.getElementById('playbtn').innerHTML = 'CLICK ME TO PLAY!';
-      audioElement.pause();
-    }
+    this.props.setIsPlaying(!this.props.isPlaying);
   }
 
   render() {
-    if (this.props.song) {
-      var audioUrl = this.props.song.song_audio;
+    if (this.props.isPlaying === true) {
+      return (
+        <div>
+          <button type="button" id="playbtn" onClick={this.handleClick}>PAUSE</button>
+        </div>
+      );
     } else {
-      var audioUrl = null;
+      return (
+        <div>
+          <button type="button" id="playbtn" onClick={this.handleClick}>PLAY</button>
+        </div>
+      );
     }
-
-    return (
-      <div>
-        <button type="button" id="playbtn" onClick={this.handleClick}>CLICK ME TO PLAY!</button>
-        <audio
-          autoPlay={false}
-          ref="song"
-          src={audioUrl}>
-          Your browser does not support the <code>audio</code> element.
-        </audio>
-      </div>
-    );
   }
 }
-export default ControlPlay;
+export default CSSModules(ControlPlay, styles);
 
 // when the play button is clicked, play current song
 
