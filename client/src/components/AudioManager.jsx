@@ -31,6 +31,7 @@ class AudioManager extends React.Component {
 
   onTimeUpdate() {
     this.setState({ currentTime: this.myRef.current.currentTime });
+    this.props.onTimeUpdate(this.state.currentTime);
   }
 
   render() {

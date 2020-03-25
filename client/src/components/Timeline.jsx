@@ -2,8 +2,10 @@ import React from 'react';
 
 class Timeline extends React.Component {
   render() {
-    if (this.refs.song) {
-      var audioTime = this.refs.song.currentTime;
+
+    // need to refer to the audio element in AudioManager
+    if (this.props.currentTime) {
+      var audioTime = this.props.currentTime;
     } else {
       var audioTime = '0:00';
     }

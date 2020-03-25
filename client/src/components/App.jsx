@@ -83,7 +83,7 @@ class App extends React.Component {
           index={this.state.currentIndex} 
           setNextSong={this.nextSong}
         />
-        <Timeline song={this.state.currentSong} />
+        <Timeline currentTime={this.state.currentTime} />
         <Avatar song={this.state.currentSong} />
         <SongInfo song={this.state.currentSong} />
       </div>
