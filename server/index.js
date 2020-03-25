@@ -3,7 +3,7 @@ const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
-const port = 3000;
+const port = 3131;
 const path = require('path');
 // var bodyParser = require('body-parser');
 
@@ -15,9 +15,13 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
 
 app.use(express.static(path.join(__dirname, '../client/public')));
+
+app.use(require('morgan')('combined')); 
 
 app.get('/songs', (req, res) => {
   connection.query('SELECT * FROM songs', (err, data) => {

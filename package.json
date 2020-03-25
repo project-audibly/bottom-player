@@ -10,6 +10,7 @@
     "flexbox-react": "^4.4.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "react": "^16.13.0",
     "react-css-modules": "^4.7.11",
